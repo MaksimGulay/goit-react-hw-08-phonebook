@@ -4,9 +4,9 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/operations';
+import { addContact } from 'redux/contacts/operations';
 import { useSelector } from 'react-redux';
-import { getFilteredContacts } from 'redux/selector';
+import { getFilteredContacts } from 'redux/contacts/selector';
 
 import {
   FormikForm,
@@ -45,7 +45,7 @@ export const ContactForm = () => {
     }
 
     const newContact = { ...values, id: nanoid() };
-
+    console.log(newContact);
     dispatch(addContact(newContact));
     actions.resetForm();
     actions.setSubmitting(false);
