@@ -45,20 +45,11 @@ export const ContactForm = () => {
     }
 
     const newContact = { ...values, id: nanoid() };
-    console.log(newContact);
     dispatch(addContact(newContact));
     actions.resetForm();
     actions.setSubmitting(false);
   };
 
-  // const handleSubmit = (values, actions) => {
-  //   const newContact = { ...values, id: nanoid() };
-  //   dispatch(addContact(newContact));
-
-  //   console.log(newContact);
-  //   actions.resetForm();
-  //   actions.setSubmitting(false);
-  // };
   return (
     <Formik
       initialValues={{

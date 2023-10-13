@@ -31,7 +31,7 @@ export const logIn = createAsyncThunk(
     try {
       const respons = await axios.post('/users/login', credentials);
       setAuthHeader(respons.data.token);
-      return respons.bata;
+      return respons.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -51,12 +51,13 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
-    const { token } = thunkAPI.getState().auth;
-    if (!token) {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    if (persistedToken === null) {
       return thunkAPI.rejectWithValue('No valid token');
     }
-    setAuthHeader(token);
     try {
+      setAuthHeader(persistedToken);
       const respons = await axios.get('/users/current');
       return respons.data;
     } catch (error) {
