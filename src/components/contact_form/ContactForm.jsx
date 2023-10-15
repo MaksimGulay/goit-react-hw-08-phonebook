@@ -18,13 +18,22 @@ import {
   StyledErrorMessage,
 } from './contactForm-style';
 
+// const schema = Yup.object().shape({
+//   name: Yup.string()
+//     .min(2, 'Too Short!')
+//     .max(50, 'Too Long!')
+//     .required('Required'),
+//   number: Yup.string()
+//     .matches(/^\d{3}-\d{2}-\d{2}$/, 'Invalid phone number format')
+//     .required('Required'),
+// });
 const schema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
   number: Yup.string()
-    .matches(/^\d{3}-\d{2}-\d{2}$/, 'Invalid phone number format')
+    .matches(/^(?:\+380|0)\d{9}$/, 'Invalid phone number format')
     .required('Required'),
 });
 
@@ -33,7 +42,7 @@ export const ContactForm = () => {
   const filteredContacts = useSelector(getFilteredContacts);
 
   const handleSubmit = (values, actions) => {
-    const { name } = values;
+    const { name} = values;
 
     const existingContact = filteredContacts.find(
       contact => contact.name.toLowerCase() === name.toLowerCase()
@@ -43,6 +52,7 @@ export const ContactForm = () => {
       alert(`${name} is already in contacts.`);
       return;
     }
+
 
     const newContact = { ...values, id: nanoid() };
     dispatch(addContact(newContact));
@@ -63,7 +73,7 @@ export const ContactForm = () => {
         <FormContainer>
           <FormikForm>
             <Label>Name</Label>
-            <Input id="name" type="text" name="name" placeholder="Остап" />
+            <Input id="name" type="text" name="name" placeholder="Martin Foks" />
             <ErrorText>
               <StyledErrorMessage name="name" />
             </ErrorText>
@@ -72,7 +82,7 @@ export const ContactForm = () => {
               id="number"
               type="text"
               name="number"
-              placeholder="123-45-67"
+              placeholder="+380 000 000 000"
             />
             <ErrorText>
               <StyledErrorMessage name="number" />
