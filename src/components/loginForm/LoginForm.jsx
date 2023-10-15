@@ -1,6 +1,7 @@
 // LoginForm.jsx
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
+import { Button, Form, Label } from './loginForm-style';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -16,18 +17,18 @@ export const LoginForm = () => {
     form.reset();
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
+    
+      <Form onSubmit={handleSubmit}>
+        <Label>
           Email
           <input type="email" name="email"></input>
-        </label>
-        <label>
+        </Label>
+        <Label>
           Password
           <input type="password" name="password"></input>
-        </label>
-        <button type="submit">Log In</button>
-      </form>
-    </div>
+        </Label>
+        <Button type="submit">Log In</Button>
+      </Form>
+    
   );
 };

@@ -6,13 +6,10 @@ display: flex;
 gap:20px;`
 
 export const StyledNavLink = styled(NavLink)`
-  /* Ваші стилі тут */
   text-decoration: none;
-  color: #007bff; /* Наприклад, чорний колір тексту */
+  color: black;
   font-size: 16px;
-  /* Додайте інші стилі за потребою */
-  
   &:hover {
-    color: black;
+    color: #007bff;
   }
 `;

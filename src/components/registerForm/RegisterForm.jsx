@@ -1,6 +1,7 @@
 // RegisterForm.jsx
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/operations';
+import { Button, Form, Label } from './registerForm-style';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -17,17 +18,17 @@ export const RegisterForm = () => {
     form.reset();
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label >Username
+    <Form onSubmit={handleSubmit}>
+      <Label >Username
         <input type="text" name="name"/>
-      </label>
-      <label >Email
+      </Label>
+      <Label >Email
         <input type="email" name="email"/>
-      </label>
-      <label >Password
+      </Label>
+      <Label >Password
         <input type="password" name="password"/>
-      </label>
-      <button type="submit">Register</button>
-    </form>
+      </Label>
+      <Button type="submit">Register</Button>
+    </Form>
   );
 };
